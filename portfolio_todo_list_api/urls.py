@@ -10,7 +10,8 @@ urlpatterns = [
     path('api/v1/', include('tasks.urls')),
     path('api/v1/', include('users.urls')),
     path('api/v1/', include('storeapp.urls')),
-    path('api-auth/',include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/', include('immagini.urls')),
 ]
 
 if settings.DEBUG:

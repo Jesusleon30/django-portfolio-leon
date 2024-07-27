@@ -1,6 +1,10 @@
 
 from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -15,7 +19,13 @@ SECRET_KEY = 'django-insecure-vyi50rltr=hdf2^naqy4ux&j-*3%*nuu+o*eqr443gj2h=2@h4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []    #default
+
+ALLOWED_HOSTS = ['*']
+# ojo en esta parte es solo de prueva 
+# aca tendriamos que poner el localstore solo del puerto de nuestro servidor 
+# poniendo el * estamos diciendo que qualquiera puede manrdarnos datos desde qualquier servidor web y eso no esta bien
+# una vez terminado la prueva elimniar el '*' y poner el puerto de nuestro servidor oficial 
 
 
 # Application definition
@@ -29,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
     'rest_framework',
     'tasks',
     'users',
     'storeapp',
+    'immagini',
 ]
 
 MIDDLEWARE = [
@@ -79,14 +92,15 @@ WSGI_APPLICATION = 'portfolio_todo_list_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'todolist_portfolio',
-        'USER': 'postgres',
-        'PASSWORD': 'root',  # '4y7sV96vA9wv46VR',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        "ENGINE": os.environ["ENGINE"],
+        "NAME": os.environ["NAME"],
+        "USER": os.environ["USER"],
+        "PASSWORD": os.environ["PASSWORD"],
+        "HOST": os.environ["HOST"]
     }
 }
+
+
 
 
 # Password validation
@@ -148,3 +162,19 @@ CORS_ALLOW_ALL_ORIGINS = True
 import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+
+
+
+
+
+# mis credenciales de cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' 
+# este es la ruta en la nube www.cloudinary.....
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'df43ck7uo',
+    'API_KEY': '598568871622394',
+    'API_SECRET': 'Jog2-LGioYzTYjJsZ1H6ors7rDA',
+}
+
+STATIC_ROOT = BASE_DIR/'static'
