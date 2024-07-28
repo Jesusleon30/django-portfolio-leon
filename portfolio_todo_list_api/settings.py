@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'rest_framework',
+    'authentication',
     'tasks',
     'users',
     'storeapp',
@@ -178,3 +179,10 @@ CLOUDINARY_STORAGE = {
 }
 
 STATIC_ROOT = BASE_DIR/'static'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}

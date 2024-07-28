@@ -16,10 +16,13 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # def str(self):
+    #     return self.name
+
 
 
     # de esta forma le pongo el nombre de la tabla
-    # def __str__ (self) -> str:
+    # def __str__(self) -> str:
     #     return self.name
 
     class Meta:
